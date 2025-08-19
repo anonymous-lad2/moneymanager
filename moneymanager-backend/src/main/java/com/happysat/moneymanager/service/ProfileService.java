@@ -4,6 +4,7 @@ import com.happysat.moneymanager.dto.ProfileDTO;
 import com.happysat.moneymanager.entity.ProfileEntity;
 import com.happysat.moneymanager.repository.ProfileRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -13,7 +14,7 @@ import java.util.UUID;
 public class ProfileService {
 
     private final ProfileRepository profileRepository;
-
+    private final PasswordEncoder passwordEncoder;
     private final EmailService emailService;
 
     public ProfileDTO registerProfile(ProfileDTO profileDTO){
@@ -34,7 +35,7 @@ public class ProfileService {
                 .id(profileDTO.getId())
                 .fullName(profileDTO.getFullName())
                 .email(profileDTO.getEmail())
-                .password(profileDTO.getPassword())
+                .password(passwordEncoder.encode(profileDTO.getPassword()))
                 .profileImageUrl(profileDTO.getProfileImageUrl())
                 .createdAt(profileDTO.getCreatedAt())
                 .updatedAt(profileDTO.getUpdatedAt())
