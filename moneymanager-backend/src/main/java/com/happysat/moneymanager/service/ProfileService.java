@@ -4,6 +4,9 @@ import com.happysat.moneymanager.dto.ProfileDTO;
 import com.happysat.moneymanager.entity.ProfileEntity;
 import com.happysat.moneymanager.repository.ProfileRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -61,5 +64,29 @@ public class ProfileService {
                     return true;
                 })
                 .orElse(false);
+    }
+
+    public boolean isAccountActive(String email){
+        return profileRepository.findByEmail(email)
+                .map(ProfileEntity::getIsActive)
+                .orElse(false);
+    }
+
+    public ProfileEntity getCurrentProfile(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return profileRepository.findByEmail(authentication.getName())
+                .orElseThrow(() -> new UsernameNotFoundException("Profile not found with email: " +authentication.getName()));
+    }
+
+    public ProfileDTO getPublicProfile(String email){
+        ProfileEntity currentUser = null;
+        if(email == null){
+            currentUser = getCurrentProfile();
+        }else {
+            currentUser = profileRepository.findByEmail(email)
+                    .orElseThrow(() -> new UsernameNotFoundException("Profile not found with email: " + email));
+        }
+
+        return toDTO(currentUser);
     }
 }
