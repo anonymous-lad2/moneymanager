@@ -2,11 +2,12 @@ import {useContext, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {assets} from "../assets/assets.js";
 import Input from "../components/Input.jsx";
+import {validateEmail} from "../util/validation.js";
 import axiosConfig from "../util/axiosConfig.jsx";
 import {API_ENDPOINTS} from "../util/apiEndpoints.js";
 import {AppContext} from "../context/AppContext.jsx";
 import {LoaderCircle} from "lucide-react";
-import { validateEmail } from "../util/Validation.js";
+import Header from "../components/Header.jsx";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -62,6 +63,7 @@ const Login = () => {
 
     return (
         <div className="h-screen w-full flex flex-col">
+            <Header />
             <div className="flex-grow w-full relative flex items-center justify-center overflow-hidden">
                 {/* Background image with blur*/}
                 <img src={assets.login_bg} alt="Background" className="absolute inset-0 w-full h-full object-cover filter blur-sm" />
