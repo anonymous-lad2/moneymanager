@@ -121,7 +121,7 @@ The frontend will run on http://localhost:5173
 
 ## 🌍 Deployment
 
-Live Project → [Click here to try it](https://moneymanager-azure.vercel.app/) 🚀
+Live Project → [Click here to try it](https://moneymanager-two.vercel.app/) 🚀
 
 ## 🤝 Contributing
 
