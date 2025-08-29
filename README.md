@@ -74,3 +74,60 @@ MoneyManager
 <img width="1881" height="948" alt="image" src="https://github.com/user-attachments/assets/9c77345b-6d8e-4610-b5e5-84786993d9eb" />
 <img width="1873" height="870" alt="image" src="https://github.com/user-attachments/assets/ba4f9452-e67a-4e36-b3c5-f81e4be98dac" />
 <img width="1887" height="779" alt="image" src="https://github.com/user-attachments/assets/c6e616db-8858-46ec-9d73-e4b35c42c2f4" />
+
+## ⚡ Installation
+
+### 1️⃣ Clone the repo
+
+```
+git clone https://github.com/<your-username>/money-manager.git
+cd money-manager
+```
+
+### 2️⃣ Backend Setup (Spring Boot + Docker)
+Local (MySQL)
+
+- Update application.properties with your local MySQL credentials.
+- Run:
+
+```
+cd moneymanager-backend
+./mvnw spring-boot:run
+```
+
+Production (PostgreSQL with Docker)
+
+- Build the Docker image:
+
+```
+docker build -t moneymanager-backend .
+```
+
+- Run the container:
+
+```
+docker run -p 8080:8080 moneymanager-backend
+```
+
+### 3️⃣ Frontend Setup (React + Tailwind)
+
+```
+cd src
+npm install
+npm run dev
+```
+
+The frontend will run on http://localhost:5173
+
+## 🌍 Deployment
+
+Live Project → [Click here to try it](https://moneymanager-azure.vercel.app/) 🚀
+
+## 🤝 Contributing
+
+Contributions are welcome!
+Fork it, create a branch, make some magic ✨, and open a PR.
+
+## 📜 License
+
+MIT License © Satyam Seth
